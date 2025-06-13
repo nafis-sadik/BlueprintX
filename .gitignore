@@ -1,4 +1,10 @@
 .vs
 
-Redbook.Core/obj/
-Redbook.Core/bin/
+src/Backend/Data/bin/
+src/Backend/Data/obj/
+src/Backend/Redbook.Core/bin/
+src/Backend/Redbook.Core/obj/
+src/Backend/WebAPI/bin/
+src/Backend/WebAPI/obj/
+src/Backend/Services/bin/
+src/Backend/Services/obj/

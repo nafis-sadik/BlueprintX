@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.Json;
-using CaseExtensions;
+using CaseConverter;
 using System.Text;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Storage;

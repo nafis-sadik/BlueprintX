@@ -2,7 +2,6 @@
 using RedBook.Core.Constants;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace RedBook.Core.Security
 {
@@ -13,10 +12,10 @@ namespace RedBook.Core.Security
             get
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                byte[] tokenKey = Encoding.ASCII.GetBytes(CommonConstants.PasswordConfig.Salt);
+                byte[] tokenKey = CommonConstants.PasswordConfig.SaltByte;
                 SecurityToken token = new JwtSecurityToken
                 (
-                    issuer: "Blume.Inventory",
+                    issuer: "Inventory",
                     audience: "Client",
                     expires: DateTime.UtcNow.AddDays(CommonConstants.PasswordConfig.SaltExpire),
                     signingCredentials: new SigningCredentials(
