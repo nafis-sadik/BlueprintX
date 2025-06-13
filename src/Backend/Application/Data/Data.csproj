@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Redbook.Core\Redbook.Core.csproj" />
+	  <ProjectReference Include="..\..\BlueprintX.Core\BlueprintX.csproj" />
 	</ItemGroup>
 
 </Project>

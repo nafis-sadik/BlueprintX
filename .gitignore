@@ -1,10 +1,10 @@
 .vs
 
-src/Backend/Data/bin/
-src/Backend/Data/obj/
-src/Backend/Redbook.Core/bin/
-src/Backend/Redbook.Core/obj/
-src/Backend/WebAPI/bin/
-src/Backend/WebAPI/obj/
-src/Backend/Services/bin/
-src/Backend/Services/obj/
+src/Backend/Application/Data/bin/
+src/Backend/Application/Data/obj/
+src/Backend/Application/WebAPI/bin/
+src/Backend/Application/WebAPI/obj/
+src/Backend/Application/Services/bin/
+src/Backend/Application/Services/obj/
+src/Backend/BlueprintX.Core/bin/
+src/Backend/BlueprintX.Core/obj/
