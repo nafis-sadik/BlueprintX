@@ -8,3 +8,19 @@ src/Backend/Application/Services/bin/
 src/Backend/Application/Services/obj/
 src/Backend/BlueprintX.Core/bin/
 src/Backend/BlueprintX.Core/obj/
+
+# Compiled output
+src/Frontend/dist
+src/Frontend/tmp
+src/Frontend/out-tsc
+src/Frontend/bazel-out
+
+# Node
+src/Frontend/node_modules
+src/Frontend/npm-debug.log
+src/Frontend/yarn-error.log
+
+# Visual Studio Code
+src/Frontend/.vscode/*
+src/Frontend/.angular/*
+src/Frontend/.continue/*

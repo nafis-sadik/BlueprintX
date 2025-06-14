@@ -1,0 +1,18 @@
+.auth-structure {
+    background-image: url('https://picsum.photos/seed/picsum/1920/1080');
+    height: 100vh;
+}
+
+.form-pane {
+    width: 40vw;
+    height: 100vh;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center; /* horizontal */
+    align-items: center;     /* vertical */
+    height: 100vh;           /* or any height */
+}
