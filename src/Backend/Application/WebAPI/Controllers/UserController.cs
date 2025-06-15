@@ -20,17 +20,17 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param>Application Id or unique identifier which is the primary key of the application</param>
         [HttpPost]
-        [Route("Login")]
-        public async Task<IActionResult> Login(User userModel)
+        [Route("/api/Login")]
+        public async Task<IActionResult> Login(LogIn userModel)
             => Ok(await _userServices.Login(userModel));
 
         /// <summary>
         /// Update own user information
         /// </summary>
-        /// <param name="user">User details object<see cref="User"/>Updated User Data</param>
+        /// <param name="user">User details object<see cref="UserModel"/>Updated User Data</param>
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> Update(User user)
+        public async Task<IActionResult> Update(UserModel user)
         {
             var userData = await _userServices.UpdateInfoAsync(user);
             if (userData != null)

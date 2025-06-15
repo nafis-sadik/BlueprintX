@@ -46,7 +46,7 @@ namespace RedBook.Core.Constants
                 get
                 {
                     if (string.IsNullOrEmpty(_saltExpire))
-                        return 7d;
+                        return 1d;
                     else
                         return double.Parse(_saltExpire);
                 }

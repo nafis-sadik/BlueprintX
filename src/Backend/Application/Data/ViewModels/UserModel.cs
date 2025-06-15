@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Data.ViewModels
 {
-    public class User
+    public class UserModel
     {
         [Required]
         public int UserId { get; set; }

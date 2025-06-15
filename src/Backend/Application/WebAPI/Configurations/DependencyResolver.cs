@@ -1,6 +1,8 @@
 ﻿using RedBook.Core.Security;
 using RedBook.Core.IoC;
 using Data.Entities;
+using Services.Implementation;
+using Services.Abstraction;
 
 namespace WebAPI.Configurations
 {
@@ -15,7 +17,7 @@ namespace WebAPI.Configurations
             services.AddScoped<IClaimsPrincipalAccessor, HttpContextClaimsPrincipalAccessor>();
 
             // Services
-            //services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

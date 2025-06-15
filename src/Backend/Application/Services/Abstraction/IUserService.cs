@@ -4,10 +4,10 @@ namespace Services.Abstraction
 {
     public interface IUserService
     {
-        Task<User> SignUp(User userModel);
-        Task<string> Login(User userModel);
-        Task<User> UpdateInfoAsync(User userModel);
-        Task<User> GetDetails();
+        Task<UserModel> SignUp(UserModel userModel);
+        Task<string> Login(LogIn userModel);
+        Task<UserModel> UpdateInfoAsync(UserModel userModel);
+        Task<UserModel> GetDetails();
         Task ResetPassword();
         Task DeleteAccount();
     }
