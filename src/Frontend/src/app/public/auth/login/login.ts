@@ -25,6 +25,11 @@ export class Login {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/dashboard']);
+      return;
+    }
   }
 
   ngOnInit(): void {

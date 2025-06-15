@@ -6,6 +6,8 @@ import { App } from './app';
 import { provideHttpClient } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       progressBar: true,
@@ -21,11 +26,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
       closeButton: true,
       enableHtml: false,
       onActivateTick: true
-    }),
-    AppRoutingModule
+    })
   ],
   providers: [
-    // provideToastr(),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideBrowserGlobalErrorListeners(),
