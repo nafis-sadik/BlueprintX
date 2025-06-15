@@ -8,6 +8,10 @@ const routes: Routes = [
     component: Public,
     children: [
       {
+        path: '',
+        loadChildren: () => import('./site/site-module').then(m => m.SiteModule),
+      },
+      {
         path: 'auth',
         loadChildren: () => import('./auth/auth-module').then(m => m.AuthModule),
       }

@@ -1,17 +1,17 @@
 <h1>Login to continue</h1>
 
-<form class="login-form">
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
         <label for="UserEmail">Email address</label>
-        <input type="email" class="form-control" id="UserEmail" aria-describedby="emailHelp" placeholder="Enter email">
+        <input formControlName="email" type="email" class="form-control" id="UserEmail" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
     <br>
     <div class="form-group">
         <label for="UserPassword">Password</label>
-        <input type="password" class="form-control" id="UserPassword" placeholder="Password">
+        <input formControlName="password" type="password" class="form-control" id="UserPassword" placeholder="Password">
     </div>
     <br>
-    <button class="form-btn btn btn-primary" type="button">Log in</button>
+    <button class="form-btn btn btn-primary" type="submit">Log in</button>
     <div class="from-group">
         Don't already have an account? <a routerLink="/auth/signup">Sign up</a>
     </div>

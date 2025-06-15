@@ -6,16 +6,18 @@ body{
 
 :root {
   --primary-bg-color: #6675df;
+  --primary-border-color: #8693f1;
   --primary-txt-color: white;
   --button-radius: 10px;
 }
 
-.form-btn {
+.btn-primary {
   color: var(--primary-txt-color) !important;
   background-color: var(--primary-bg-color) !important;
+  border-color: var(--primary-border-color);
 }
 
-.form-btn:hover {
+.btn-primary:hover {
   color: white !important;
   background-color: black !important;
 }
