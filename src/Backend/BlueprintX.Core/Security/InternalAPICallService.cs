@@ -12,12 +12,12 @@ namespace RedBook.Core.Security
             get
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                byte[] tokenKey = CommonConstants.PasswordConfig.SaltByte;
+                byte[] tokenKey = CommonConstants.SecurityConfig.SaltByte;
                 SecurityToken token = new JwtSecurityToken
                 (
                     issuer: "Inventory",
                     audience: "Client",
-                    expires: DateTime.UtcNow.AddDays(CommonConstants.PasswordConfig.SaltExpire),
+                    expires: DateTime.UtcNow.AddDays(CommonConstants.SecurityConfig.JWTExpire),
                     signingCredentials: new SigningCredentials(
                         new SymmetricSecurityKey(tokenKey),
                         SecurityAlgorithms.HmacSha256Signature

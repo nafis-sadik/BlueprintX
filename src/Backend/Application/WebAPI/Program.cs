@@ -55,7 +55,7 @@ namespace Inventory.WebAPI
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(CommonConstants.PasswordConfig.SaltByte),
+                    IssuerSigningKey = new SymmetricSecurityKey(CommonConstants.SecurityConfig.SaltByte),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

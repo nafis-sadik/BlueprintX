@@ -12,6 +12,7 @@ using RedBook.Core.UnitOfWork;
 using Services.Abstraction;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using static RedBook.Core.Constants.CommonConstants.SecurityConfig;
 
 namespace Services.Implementation
 {
@@ -42,7 +43,7 @@ namespace Services.Implementation
                 var _userRepo = repoFactory.GetRepository<User>();
 
                 UserModel? userEntity = await _userRepo.UnTrackableQuery()
-                    .Where(user => user.Email == userModel.Email)
+                    .Where(user => user.Email == userModel.Email.Trim().ToLower())
                     .Select(user => new UserModel
                     {
                         UserId = user.UserId,
@@ -52,9 +53,10 @@ namespace Services.Implementation
                     .FirstOrDefaultAsync();
 
                 if(userEntity == null)
-                    throw new ArgumentException("No user registered with this email");
+                    throw new ArgumentException(CommonConstants.HttpResponseMessages.UserNotFound);
 
-                if (ReferenceEquals(userEntity.Password, userModel.Password))
+                string dbPassword = BCrypt.Net.BCrypt.HashPassword(userEntity.Password, SaltStr);
+                if (BCrypt.Net.BCrypt.Verify(userEntity.Password, dbPassword))
                 {
                     return GenerateJwtToken(new List<Claim> {
                         new Claim("UserId", userEntity.UserId.ToString()),
@@ -62,7 +64,7 @@ namespace Services.Implementation
                     });
                 }
                 else
-                    throw new ArgumentException("Invalid password");
+                    throw new ArgumentException(CommonConstants.HttpResponseMessages.PasswordMismatched);
             }
         }
 
@@ -89,9 +91,9 @@ namespace Services.Implementation
                 (
                     issuer: "BlueprintX",
                     audience: "User",
-                    expires: DateTime.UtcNow.AddDays(CommonConstants.PasswordConfig.SaltExpire),
+                    expires: DateTime.UtcNow.AddDays(CommonConstants.SecurityConfig.JWTExpire),
                     signingCredentials: new SigningCredentials(
-                        new SymmetricSecurityKey(CommonConstants.PasswordConfig.SaltByte),
+                        new SymmetricSecurityKey(CommonConstants.SecurityConfig.JWTSecret),
                         SecurityAlgorithms.HmacSha256Signature
                     ),
                     claims: claimList

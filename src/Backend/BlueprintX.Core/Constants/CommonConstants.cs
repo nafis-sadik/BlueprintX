@@ -13,15 +13,15 @@ namespace RedBook.Core.Constants
             _configuration = configuration;
         }
 
-        public static class PasswordConfig
+        public static class SecurityConfig
         {
-            private static readonly string? _salt = _configuration == null ? null : _configuration["PasswordConfig:SaltStr"];
+            private static readonly string? _salt = _configuration == null ? null : _configuration["PasswordConfig:Salt"];
             public static string SaltStr
             {
                 get
                 {
                     if (string.IsNullOrEmpty(_salt))
-                        return "Keno Megh Ashe, Hridoyo Akash, Tomaye Dekhite Dei Na";
+                        return "$2a$12$FxYtSkA4a4t7.RbG0U4aT.";
                     else
                         return _salt;
                 }
@@ -36,19 +36,6 @@ namespace RedBook.Core.Constants
                     // Ensure it's exactly 16 bytes
                     Array.Resize(ref byteArray, 16);
                     return byteArray;
-                }
-                private set { }
-            }
-
-            private static readonly string? _saltExpire = _configuration == null ? null : _configuration["PasswordConfig:SaltExpire"];
-            public static double SaltExpire
-            {
-                get
-                {
-                    if (string.IsNullOrEmpty(_saltExpire))
-                        return 1d;
-                    else
-                        return double.Parse(_saltExpire);
                 }
                 private set { }
             }
@@ -75,6 +62,32 @@ namespace RedBook.Core.Constants
                         return "sn0pBZ#KCCW2";
                     else
                         return _defaultPassword;
+                }
+                private set { }
+            }
+
+            private static readonly string? _jwtExpire = _configuration == null ? null : _configuration["PasswordConfig:SaltExpire"];
+            public static double JWTExpire
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_jwtExpire))
+                        return 1d;
+                    else
+                        return double.Parse(_jwtExpire);
+                }
+                private set { }
+            }
+
+            private static readonly string? _jwtSecret = _configuration == null ? null : _configuration["PasswordConfig:JWTSecret"];
+            public static byte[] JWTSecret
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_jwtSecret))
+                        return Encoding.UTF8.GetBytes("2A8f$kP9rV8*zN3LmQ7hWp2!xR56eTyU");
+                    else
+                        return Encoding.UTF8.GetBytes(_jwtSecret);
                 }
                 private set { }
             }

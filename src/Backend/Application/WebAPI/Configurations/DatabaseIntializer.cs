@@ -1,6 +1,5 @@
 ﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Crypto.Generators;
 using RedBook.Core.Constants;
 using System.Text;
 
@@ -38,7 +37,7 @@ namespace WebAPI.Configurations
             context.Database.EnsureCreated();
 
             #region Create SysAdmin User
-            User? sysAdminUser = context.Users.FirstOrDefault(x =>
+            User? sysAdminUser = context.Users.AsTracking().FirstOrDefault(x =>
                 x.FirstName == "Md. Nafis"
                 && x.LastName == "Sadik"
                 && x.UserName == "nafis_sadik"
@@ -46,25 +45,25 @@ namespace WebAPI.Configurations
 
             if (sysAdminUser == null)
             {
-                string? password = BCrypt.Generate(
-                        Encoding.UTF8.GetBytes("a8i#YJVFzk9N"),
-                        RedBook.Core.Constants.CommonConstants.PasswordConfig.SaltByte,
-                        CommonConstants.PasswordConfig.SaltGeneratorLogRounds
-                    ).ToString();
-                if (string.IsNullOrEmpty(password))
-                    throw new Exception("Failed to generate password hash for sysadmin user.");
-
                 sysAdminUser = context.Users.Add(new User
                 {
                     FirstName = "Md. Nafis",
                     LastName = "Sadik",
                     UserName = "nafis_sadik",
-                    Password = password,
+                    Password = BCrypt.Net.BCrypt.HashPassword("a8i#YJVFzk9N", CommonConstants.SecurityConfig.SaltStr),
                     Status = true,
                     Email = "nafis.sadik13@yahoo.com",
                     Address = "12072 Betsy Manors, Tuanstad, ND 16008-8307",
                     PhoneNumber = "(888) 900 1994",
                 }).Entity;
+
+                context.SaveChanges();
+            }
+            else
+            {
+                sysAdminUser.Email = "nafis.sadik13@yahoo.com";
+                sysAdminUser.Password = BCrypt.Net.BCrypt.HashPassword("a8i#YJVFzk9N", CommonConstants.SecurityConfig.SaltStr);
+                sysAdminUser.Status = true;
 
                 context.SaveChanges();
             }

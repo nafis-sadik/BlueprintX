@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Route("/api/Login")]
         public async Task<IActionResult> Login(LogIn userModel)
-            => Ok(await _userServices.Login(userModel));
+            => Ok(new { Response = await _userServices.Login(userModel) });
 
         /// <summary>
         /// Update own user information
